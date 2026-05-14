@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -728,4 +728,30 @@ body {
   .section-title {
     font-size: 20px;
   }
+}
+
+/* ── 사이드바 푸터 인스타 링크 ── */
+.sidebar-footer {
+  padding: 16px 20px 20px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  margin-top: auto;
+}
+.insta-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  transition: background 0.2s, color 0.2s;
+}
+.insta-link:hover {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+.insta-link svg {
+  flex-shrink: 0;
+  opacity: 0.85;
 }
