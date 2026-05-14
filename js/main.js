@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─── Nav items ────────────────────────────────────
   const navItems = document.querySelectorAll('.nav-item');
-  const subNavItems = document.querySelectorAll('.sub-nav-item');
   const sections = document.querySelectorAll('.section');
 
   function setActiveSection(sectionId, label) {
@@ -43,46 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   navItems.forEach(item => {
-    item.addEventListener('click', (e) => {
-      const hasSubnav = item.querySelector('.sub-nav');
+    item.addEventListener('click', () => {
       const sectionId = item.dataset.section;
+      if (!sectionId) return;
 
-      if (hasSubnav) {
-        // toggle open/close
-        navItems.forEach(i => {
-          if (i !== item) {
-            i.classList.remove('open');
-          }
-        });
-        item.classList.toggle('open');
-        e.stopPropagation();
-        return;
-      }
-
-      navItems.forEach(i => i.classList.remove('active'));
-      subNavItems.forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-
-      if (sectionId) {
-        const label = item.querySelector('.nav-text')?.textContent || '';
-        setActiveSection(sectionId, label);
-      }
-    });
-  });
-
-  subNavItems.forEach(item => {
-    item.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const sectionId = item.dataset.section;
-
-      subNavItems.forEach(i => i.classList.remove('active'));
       navItems.forEach(i => i.classList.remove('active'));
       item.classList.add('active');
 
-      if (sectionId) {
-        const label = item.textContent.trim();
-        setActiveSection(sectionId, label);
-      }
+      const label = item.querySelector('.nav-text')?.textContent || '';
+      setActiveSection(sectionId, label);
     });
   });
 
@@ -94,15 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (sectionId) {
         setActiveSection(sectionId, label);
 
-        // update nav active state
         navItems.forEach(i => i.classList.remove('active'));
-        subNavItems.forEach(i => i.classList.remove('active'));
-        const navMatch = document.querySelector(`[data-section="${sectionId}"]`);
-        if (navMatch) {
-          navMatch.classList.add('active');
-          const parent = navMatch.closest('.nav-item');
-          if (parent) parent.classList.add('open');
-        }
+        const navMatch = document.querySelector(`.nav-item[data-section="${sectionId}"]`);
+        if (navMatch) navMatch.classList.add('active');
       }
     });
   });
@@ -119,8 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (container) {
           const weekId = tab.dataset.week;
-          container.querySelectorAll('.week-content').forEach(c => c.classList.remove('active'));
-          const target = container.querySelector(`[data-week-content="${weekId}"]`);
+          // 직계 자식 .week-content만 대상으로 (중첩 탭 내부 건드리지 않음)
+          Array.from(container.children)
+            .filter(c => c.classList.contains('week-content'))
+            .forEach(c => c.classList.remove('active'));
+          const target = container.querySelector(`:scope > [data-week-content="${weekId}"]`);
           if (target) target.classList.add('active');
         }
       });

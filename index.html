@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>묘한 송이의 맘스노트 🌸</title>
   <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
 </head>
 <body>
 
@@ -12,7 +13,7 @@
 <aside id="sidebar">
   <div class="sidebar-header">
     <a href="#" class="sidebar-logo" onclick="return false;">
-      <span>🌸</span>묘한 송이의 맘스노트
+      <span>🌸</span>묘한 송이의<br>맘스노트
     </a>
     <div class="sidebar-subtitle">함께 나누는 육아 정보</div>
   </div>
@@ -26,29 +27,17 @@
       </div>
     </button>
 
-    <button class="nav-item">
+    <button class="nav-item" data-section="week-list">
       <div class="nav-label">
         <span class="nav-emoji">📆</span>
         <span class="nav-text">주차별 할일 리스트</span>
-        <span class="nav-arrow">›</span>
-      </div>
-      <div class="sub-nav">
-        <button class="sub-nav-item" data-section="week-early">🌱 0~15주 (임신 초기)</button>
-        <button class="sub-nav-item" data-section="week-mid">🌿 16~27주 (임신 중기)</button>
-        <button class="sub-nav-item" data-section="week-late">🌸 28~40주 (임신 말기)</button>
       </div>
     </button>
 
-    <button class="nav-item">
+    <button class="nav-item" data-section="baby-products">
       <div class="nav-label">
         <span class="nav-emoji">🛍️</span>
         <span class="nav-text">출산용품 리스트</span>
-        <span class="nav-arrow">›</span>
-      </div>
-      <div class="sub-nav">
-        <button class="sub-nav-item" data-section="baby-furniture">🛏️ 가구·가전·외출</button>
-        <button class="sub-nav-item" data-section="baby-food">🍼 분유·위생·세척·목욕</button>
-        <button class="sub-nav-item" data-section="baby-clothes">👕 침구·의류·장난감</button>
       </div>
     </button>
 
@@ -104,210 +93,210 @@
       </div>
 
       <div class="quick-links">
-        <button class="quick-link" data-section="week-early">
-          <span class="ql-emoji">🌱</span>
-          <div class="ql-title">0~15주 임신 초기</div>
-          <div class="ql-desc">초기 할일 체크리스트</div>
+        <button class="quick-link" data-section="week-list">
+          <span class="ql-emoji">📆</span>
+          <div class="ql-title">주차별 할일 리스트</div>
+          <div class="ql-desc">임신 초기·중기·말기 체크리스트</div>
         </button>
-        <button class="quick-link" data-section="week-mid">
-          <span class="ql-emoji">🌿</span>
-          <div class="ql-title">16~27주 임신 중기</div>
-          <div class="ql-desc">중기 할일 체크리스트</div>
-        </button>
-        <button class="quick-link" data-section="week-late">
-          <span class="ql-emoji">🌸</span>
-          <div class="ql-title">28~40주 임신 말기</div>
-          <div class="ql-desc">말기 할일 체크리스트</div>
-        </button>
-        <button class="quick-link" data-section="baby-furniture">
-          <span class="ql-emoji">🛏️</span>
-          <div class="ql-title">출산용품 (가구·가전·외출)</div>
-          <div class="ql-desc">필수 출산용품 목록</div>
-        </button>
-        <button class="quick-link" data-section="baby-food">
-          <span class="ql-emoji">🍼</span>
-          <div class="ql-title">출산용품 (분유·위생·목욕)</div>
-          <div class="ql-desc">필수 출산용품 목록</div>
-        </button>
-        <button class="quick-link" data-section="baby-clothes">
-          <span class="ql-emoji">👕</span>
-          <div class="ql-title">출산용품 (침구·의류·장난감)</div>
-          <div class="ql-desc">필수 출산용품 목록</div>
+        <button class="quick-link" data-section="baby-products">
+          <span class="ql-emoji">🛍️</span>
+          <div class="ql-title">출산용품 리스트</div>
+          <div class="ql-desc">가구·가전·외출·분유·침구 전체</div>
         </button>
         <button class="quick-link" data-section="dutyfree">
           <span class="ql-emoji">🛒</span>
-          <div class="ql-title">면세점 쇼핑리스트</div>
-          <div class="ql-desc">할인율 비교표</div>
+          <div class="ql-title">면세점 쇼핑 목록 추천</div>
+          <div class="ql-desc">브랜드별 추천 아이템</div>
         </button>
         <button class="quick-link" data-section="confinement">
           <span class="ql-emoji">🛌</span>
           <div class="ql-title">조리원 계약 관련</div>
-          <div class="ql-desc">태릉뉴이자르 정보</div>
+          <div class="ql-desc">조리원 체크리스트</div>
         </button>
         <button class="quick-link" data-section="bag">
           <span class="ql-emoji">👜</span>
           <div class="ql-title">출산 가방 리스트</div>
-          <div class="ql-desc">입원 준비물 목록</div>
+          <div class="ql-desc">입원·조리원 준비물 전체</div>
         </button>
       </div>
     </section>
 
-    <!-- ── 0~15주 임신 초기 ────────────────────────── -->
-    <section id="week-early" class="section">
-      <h2 class="section-title"><span class="emoji">🌱</span> 0~15주 (임신 초기)</h2>
+    <!-- ── 주차별 할일 리스트 ─────────────────────── -->
+    <section id="week-list" class="section">
+      <h2 class="section-title"><span class="emoji">📆</span> 주차별 할일 리스트</h2>
 
-      <ul class="checklist">
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>임신 혜택 신청하기</strong><br>
-            임신확인증 발급 후에 보건소나 주민센터에 신청하기 (맘편한 임신 원스탑서비스에서 택배 신청 가능)<br>
-            <span style="color: var(--primary-dark); font-size:13px;">→ 국민행복카드, 진료비바우처(국민건강보험), 임산부 전기요금 할인(한전 사이트 또는 132), 우체국 태아보험</span>
-          </div>
-        </li>
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>자동차 보험 할인 및 환급 받기</strong><br>
-            임신확인증에 임신확인일자부터 출산 시까지 자동차 보험을 할인받을 수 있어요. 출산 후에는 자녀 특약이 있으니 자녀 특약 할인도 놓치지 마세요!
-          </div>
-        </li>
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>산후조리원 예약하기!</strong><br>
-            인기가 많은 곳은 12주가 되기도 전에 벌써 마감되는 곳도 많으니 미리미리 알아보고 예약하세요!
-          </div>
-        </li>
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>태아보험 가입하기!</strong><br>
-            12주쯤 1차 기형아 검사를 합니다. 기형아 검사 결과가 나오기 전에 태아보험 가입하세요!<br>
-            태아보험(=어린이 보험)만 가입하지 마시고 <strong>실비보험도 같이 가입</strong>하셔야 실질적인 가벼운 질환이 있을 때도 보상받을 수 있어요!
-          </div>
-        </li>
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>기형아 검사 결정하기</strong><br>
-            2차 기형아 검사는 16주쯤 진행됩니다. 단순 초음파 검사 / 니프티 검사 / 융모막 검사 / 양수 검사 등이 있어요. 미리 생각해 두세요!
-          </div>
-        </li>
-      </ul>
+      <div class="week-tab-container">
+        <div class="week-tabs">
+          <button class="week-tab active" data-week="w-early">🌱 0~15주 (초기)</button>
+          <button class="week-tab" data-week="w-mid">🌿 16~27주 (중기)</button>
+          <button class="week-tab" data-week="w-late">🌸 28~40주 (말기)</button>
+        </div>
+
+        <div class="week-content active" data-week-content="w-early">
+          <ul class="checklist">
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>임신 혜택 신청하기</strong><br>
+                임신확인증 발급 후에 보건소나 주민센터에 신청하기 (맘편한 임신 원스탑서비스에서 택배 신청 가능)<br>
+                <span style="color: var(--primary-dark); font-size:13px;">→ 국민행복카드, 진료비바우처(국민건강보험), 임산부 전기요금 할인(한전 사이트 또는 132), 우체국 태아보험</span>
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>자동차 보험 할인 및 환급 받기</strong><br>
+                임신확인증에 임신확인일자부터 출산 시까지 자동차 보험을 할인받을 수 있어요. 출산 후에는 자녀 특약이 있으니 자녀 특약 할인도 놓치지 마세요!
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>산후조리원 예약하기!</strong><br>
+                인기가 많은 곳은 12주가 되기도 전에 벌써 마감되는 곳도 많으니 미리미리 알아보고 예약하세요!
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>태아보험 가입하기!</strong><br>
+                12주쯤 1차 기형아 검사를 합니다. 기형아 검사 결과가 나오기 전에 태아보험 가입하세요!<br>
+                태아보험(=어린이 보험)만 가입하지 마시고 <strong>실비보험도 같이 가입</strong>하셔야 실질적인 가벼운 질환이 있을 때도 보상받을 수 있어요!
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>기형아 검사 결정하기</strong><br>
+                2차 기형아 검사는 16주쯤 진행됩니다. 단순 초음파 검사 / 니프티 검사 / 융모막 검사 / 양수 검사 등이 있어요. 미리 생각해 두세요!
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="week-content" data-week-content="w-mid">
+          <ul class="checklist">
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>철분제 섭취하기</strong><br>
+                16주부터는 혈액이 많이 필요하기 때문에 출산할 때까지 철분제를 꼭 섭취해 주세요!
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>독감 예방주사 맞기</strong><br>
+                16주 이후 안정기이기 때문에 20주쯤에는 독감 예방주사를 맞는 것이 좋습니다!
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>태교여행 다녀오기</strong><br>
+                입덧이 줄어들고 안정기가 찾아오는 이 시기에 태교여행을 다녀오시는 것이 좋습니다!
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>출산·육아용품 리스트 작성 및 구매하기</strong><br>
+                막달에 준비하려면 몸도 무겁고 힘들기 때문에 미리미리 리스트를 작성하고, 중고거래 할 것과 새 상품 구매할 것을 미리 정해 놓고 중고거래는 미리미리 구입해 놓는 것이 좋습니다.
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>산책, 요가 등 가벼운 운동하기</strong><br>
+                가벼운 운동을 통해 양수가 출렁이면 태아의 피부에 자극이 가서 태아의 뇌 발달에 좋습니다!
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>산모교실 다니기</strong><br>
+                보건소에서 무료로 산모교실을 열어줍니다! 출산 방법, 신생아 목욕시키는 법, 속싸개 싸는 법, 모유수유 하는 법도 알려줍니다.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="week-content" data-week-content="w-late">
+          <ul class="checklist">
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>만삭 사진 촬영 (28~32주)</strong><br>
+                만삭사진이라고 해서 막달에 찍는 것이 아니라, <strong>28~32주 사이가 가장 배가 예쁘게 나오는 시기</strong>예요!
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>백일해 예방주사 맞기</strong><br>
+                산모는 29주쯤 아기에게 항체를 만들어주기 위해 백일해 주사를 맞아야 합니다. 남편은 34주쯤 예방접종 맞으시면 됩니다.
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>아기용품 세탁하기 (30주~)</strong><br>
+                미리 세탁해 놓아도 다시 먼지가 쌓이기 때문에 30주부터 아기 옷이나 용품들을 세탁하시는 것이 좋습니다.
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>산후도우미 신청하기 (30~32주)</strong><br>
+                출산 한 달~두 달 전부터 신청하시면 됩니다! 인기 있는 이모님은 2달 전부터 예약하세요!
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>출산 방법 결정하기 (34주)</strong><br>
+                자연분만 / 유도분만 / 제왕절개 중 34주에 의사와 면담하며 결정하시면 되는데, 그 전에 남편과 미리 상의해 두세요.
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>동물성 오메가3 섭취 중지 (35주~)</strong><br>
+                동물성 오메가3를 복용 중이었다면 수술 시 지혈이 잘 안될 수 있습니다. 35주부터는 복용하지 않는 것이 좋아요!
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>출산가방 준비하기 (37주 전)</strong><br>
+                37주부터는 언제 아기가 나와도 이상하지 않은 시기입니다. 37주가 오기 전에 미리미리 출산가방을 준비해 놓으세요!
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <!-- ── 16~27주 임신 중기 ───────────────────────── -->
-    <section id="week-mid" class="section">
-      <h2 class="section-title"><span class="emoji">🌿</span> 16~27주 (임신 중기)</h2>
+    <!-- ── 출산용품 리스트 (통합) ─────────────────── -->
+    <section id="baby-products" class="section">
+      <div class="section-title-row">
+        <h2 class="section-title"><span class="emoji">🛍️</span> 출산용품 리스트</h2>
+        <button class="excel-btn" onclick="downloadBabyProductsExcel()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          엑셀 다운로드
+        </button>
+      </div>
 
-      <ul class="checklist">
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>철분제 섭취하기</strong><br>
-            16주부터는 혈액이 많이 필요하기 때문에 출산할 때까지 철분제를 꼭 섭취해 주세요!
-          </div>
-        </li>
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>독감 예방주사 맞기</strong><br>
-            16주 이후 안정기이기 때문에 20주쯤에는 독감 예방주사를 맞는 것이 좋습니다!
-          </div>
-        </li>
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>태교여행 다녀오기</strong><br>
-            입덧이 줄어들고 안정기가 찾아오는 이 시기에 태교여행을 다녀오시는 것이 좋습니다!
-          </div>
-        </li>
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>출산·육아용품 리스트 작성 및 구매하기</strong><br>
-            막달에 준비하려면 몸도 무겁고 힘들기 때문에 미리미리 리스트를 작성하고, 중고거래 할 것과 새 상품 구매할 것을 미리 정해 놓고 중고거래는 미리미리 구입해 놓는 것이 좋습니다.
-          </div>
-        </li>
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>산책, 요가 등 가벼운 운동하기</strong><br>
-            가벼운 운동을 통해 양수가 출렁이면 태아의 피부에 자극이 가서 태아의 뇌 발달에 좋습니다!
-          </div>
-        </li>
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>산모교실 다니기</strong><br>
-            보건소에서 무료로 산모교실을 열어줍니다! 출산 방법, 신생아 목욕시키는 법, 속싸개 싸는 법, 모유수유 하는 법도 알려줍니다.
-          </div>
-        </li>
-      </ul>
-    </section>
+      <div class="week-tab-container">
+        <div class="week-tabs">
+          <button class="week-tab active" data-week="bp-furniture">🛏️ 가구·가전·외출</button>
+          <button class="week-tab" data-week="bp-food">🍼 분유·위생·세척·목욕</button>
+          <button class="week-tab" data-week="bp-clothes">👕 침구·의류·장난감</button>
+        </div>
 
-    <!-- ── 28~40주 임신 말기 ───────────────────────── -->
-    <section id="week-late" class="section">
-      <h2 class="section-title"><span class="emoji">🌸</span> 28~40주 (임신 말기)</h2>
+        <div class="week-content active" data-week-content="bp-furniture">
 
-      <ul class="checklist">
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>만삭 사진 촬영 (28~32주)</strong><br>
-            만삭사진이라고 해서 막달에 찍는 것이 아니라, <strong>28~32주 사이가 가장 배가 예쁘게 나오는 시기</strong>예요!
-          </div>
-        </li>
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>백일해 예방주사 맞기</strong><br>
-            산모는 29주쯤 아기에게 항체를 만들어주기 위해 백일해 주사를 맞아야 합니다. 남편은 34주쯤 예방접종 맞으시면 됩니다.
-          </div>
-        </li>
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>아기용품 세탁하기 (30주~)</strong><br>
-            미리 세탁해 놓아도 다시 먼지가 쌓이기 때문에 30주부터 아기 옷이나 용품들을 세탁하시는 것이 좋습니다.
-          </div>
-        </li>
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>산후도우미 신청하기 (30~32주)</strong><br>
-            출산 한 달~두 달 전부터 신청하시면 됩니다! 인기 있는 이모님은 2달 전부터 예약하세요!
-          </div>
-        </li>
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>출산 방법 결정하기 (34주)</strong><br>
-            자연분만 / 유도분만 / 제왕절개 중 34주에 의사와 면담하며 결정하시면 되는데, 그 전에 남편과 미리 상의해 두세요.
-          </div>
-        </li>
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>동물성 오메가3 섭취 중지 (35주~)</strong><br>
-            동물성 오메가3를 복용 중이었다면 수술 시 지혈이 잘 안될 수 있습니다. 35주부터는 복용하지 않는 것이 좋아요!
-          </div>
-        </li>
-        <li>
-          <div class="check-icon"></div>
-          <div class="check-text">
-            <strong>출산가방 준비하기 (37주 전)</strong><br>
-            37주부터는 언제 아기가 나와도 이상하지 않은 시기입니다. 37주가 오기 전에 미리미리 출산가방을 준비해 놓으세요!
-          </div>
-        </li>
-      </ul>
-    </section>
-
-    <!-- ── 출산용품 - 가구·가전·외출 ──────────────── -->
-    <section id="baby-furniture" class="section">
-      <h2 class="section-title"><span class="emoji">🛏️</span> 출산용품 리스트 (가구·가전·외출)</h2>
-
+    <!-- ── 출산용품 - 가구·가전·외출 (inner) ── -->
       <div class="week-tab-container">
         <div class="week-tabs">
           <button class="week-tab active" data-week="all">전체</button>
@@ -333,23 +322,23 @@
               </thead>
               <tbody>
                 <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>아기침대</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>가구</td><td><select class="method-select"><option>렌트</option><option>새제품</option><option>중고/당근</option><option>선물</option></select></td><td>3M</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>데이베드</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>가구</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>데이베드</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>가구</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
                 <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>아기 서랍장</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>가구</td><td><select class="method-select"><option>중고/당근</option><option>새제품</option><option>렌트</option><option>선물</option></select></td><td>—</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>기저귀갈이대</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>가구</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>12M</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>하이체어</td><td><span class="tag tag-pink">강추</span></td><td>출산후</td><td>가구</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>뉴본세트</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>가구</td><td><select class="method-select"><option>선물</option><option>새제품</option><option>렌트</option><option>중고/당근</option></select></td><td>—</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>홈캠</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>가전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>온습도계</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>가전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>체온계</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>가전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>가습기</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>가전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>공기청정기</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>가전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>기저귀갈이대</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>가구</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>12M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>하이체어</td><td><span class="tag tag-pink">강추</span></td><td>출산후</td><td>가구</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>뉴본세트</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>가구</td><td><select class="method-select"><option>선물</option><option>새제품</option><option>렌트</option><option>중고/당근</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>홈캠</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>가전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>온습도계</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>가전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>체온계</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>가전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>가습기</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>가전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>공기청정기</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>가전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
                 <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>백색소음기</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>가전</td><td><select class="method-select"><option>중고/당근</option><option>새제품</option><option>렌트</option><option>선물</option></select></td><td>12M</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>수유등</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>가전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>아기띠</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>외출</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>18M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>수유등</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>가전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>아기띠</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>외출</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>18M</td></tr>
                 <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>유모차</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>외출</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>3Y</td></tr>
                 <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>카시트</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>외출</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>3Y권장</td></tr>
                 <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>바구니카시트</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>외출</td><td><select class="method-select"><option>렌트</option><option>새제품</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>휴대용 분유포트</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>외출</td><td><select class="method-select"><option>선물</option><option>새제품</option><option>렌트</option><option>중고/당근</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>휴대용 분유포트</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>외출</td><td><select class="method-select"><option>선물</option><option>새제품</option><option>렌트</option><option>중고/당근</option></select></td><td>—</td></tr>
               </tbody>
             </table>
           </div>
@@ -364,11 +353,11 @@
               </thead>
               <tbody>
                 <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>아기침대</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>렌트</option><option>새제품</option><option>중고/당근</option><option>선물</option></select></td><td>3M</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>데이베드</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>데이베드</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
                 <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>아기 서랍장</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td><select class="method-select"><option>중고/당근</option><option>새제품</option><option>렌트</option><option>선물</option></select></td><td>—</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>기저귀갈이대</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>12M</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>하이체어</td><td><span class="tag tag-pink">강추</span></td><td>출산후</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>뉴본세트</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td><select class="method-select"><option>선물</option><option>새제품</option><option>렌트</option><option>중고/당근</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>기저귀갈이대</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>12M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>하이체어</td><td><span class="tag tag-pink">강추</span></td><td>출산후</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>뉴본세트</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td><select class="method-select"><option>선물</option><option>새제품</option><option>렌트</option><option>중고/당근</option></select></td><td>—</td></tr>
               </tbody>
             </table>
           </div>
@@ -382,13 +371,13 @@
                 <tr><th style="width:48px">완료</th><th>품목</th><th>필수여부</th><th>구매시기</th><th>구매방법</th><th>사용기간</th></tr>
               </thead>
               <tbody>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>홈캠</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>온습도계</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>체온계</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>가습기</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>공기청정기</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>홈캠</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>온습도계</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>체온계</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>가습기</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>공기청정기</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
                 <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>백색소음기</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td><select class="method-select"><option>중고/당근</option><option>새제품</option><option>렌트</option><option>선물</option></select></td><td>12M</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>수유등</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>수유등</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
               </tbody>
             </table>
           </div>
@@ -402,217 +391,346 @@
                 <tr><th style="width:48px">완료</th><th>품목</th><th>필수여부</th><th>구매시기</th><th>구매방법</th><th>사용기간</th></tr>
               </thead>
               <tbody>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>아기띠</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>18M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>아기띠</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>18M</td></tr>
                 <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>유모차</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>3Y</td></tr>
                 <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>카시트</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>3Y권장</td></tr>
                 <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>바구니카시트</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>렌트</option><option>새제품</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
-                <tr><td class="td-check"><input type="checkbox" class="item-check" checked></td><td>휴대용 분유포트</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>선물</option><option>새제품</option><option>렌트</option><option>중고/당근</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>휴대용 분유포트</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>선물</option><option>새제품</option><option>렌트</option><option>중고/당근</option></select></td><td>—</td></tr>
               </tbody>
             </table>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- ── 출산용품 - 분유·위생·세척·목욕 ───────────── -->
-    <section id="baby-food" class="section">
-      <h2 class="section-title"><span class="emoji">🍼</span> 출산용품 리스트 (분유·위생·세척·목욕)</h2>
-      <div class="empty-section">
-        <div class="empty-emoji">🍼</div>
-        <p>분유·위생·세척·목욕 용품 목록을 이곳에 추가해 주세요.<br>
-           노션 페이지에 내용을 작성하면 업데이트해 드릴게요!</p>
-      </div>
-    </section>
+        </div><!-- /bp-furniture -->
+        <div class="week-content" data-week-content="bp-food">
 
-    <!-- ── 출산용품 - 침구·의류·장난감 ──────────────── -->
-    <section id="baby-clothes" class="section">
-      <h2 class="section-title"><span class="emoji">👕</span> 출산용품 리스트 (침구·의류·장난감)</h2>
-      <div class="empty-section">
-        <div class="empty-emoji">👕</div>
-        <p>침구·의류·장난감 목록을 이곳에 추가해 주세요.<br>
-           노션 페이지에 내용을 작성하면 업데이트해 드릴게요!</p>
+      <div class="week-tab-container">
+        <div class="week-tabs">
+          <button class="week-tab active" data-week="bf-all">전체</button>
+          <button class="week-tab" data-week="bf-milk">🍼 수유/분유</button>
+          <button class="week-tab" data-week="bf-wash">🧼 세척</button>
+          <button class="week-tab" data-week="bf-hygiene">🧴 위생</button>
+          <button class="week-tab" data-week="bf-diaper">🩹 기저귀</button>
+          <button class="week-tab" data-week="bf-bath">🛁 목욕</button>
+        </div>
+
+        <!-- 전체 -->
+        <div class="week-content active" data-week-content="bf-all">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th style="width:48px">완료</th><th>품목</th><th>필수여부</th><th>구매시기</th><th>카테고리</th><th>구매방법</th><th>사용기간</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>아기 비타민D</td><td>—</td><td>출산전</td><td>수유/분유</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>아기 유산균</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>수유/분유</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>수유패드</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>수유/분유</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>젖병</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>수유/분유</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>12M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>노리개 젖꼭지</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>수유/분유</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>12M권장</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>분유포트</td><td>—</td><td>출산전</td><td>수유/분유</td><td><select class="method-select"><option>새제품</option><option>—</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>12M~</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>분유</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>수유/분유</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>12M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>분유세이커</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>수유/분유</td><td><select class="method-select"><option>선물</option><option>새제품</option><option>렌트</option><option>중고/당근</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>젖병세제</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>세척</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>젖병 건조대</td><td>—</td><td>출산전</td><td>세척</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>젖병 집게</td><td>—</td><td>출산전</td><td>세척</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>스펀지 세척솔</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>세척</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>젖병세척기</td><td>—</td><td>출산전</td><td>세척</td><td><select class="method-select"><option>새제품</option><option>—</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>12M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>젖병소독기</td><td>—</td><td>출산전</td><td>세척</td><td><select class="method-select"><option>중고/당근</option><option>새제품</option><option>렌트</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>세탁세제/섬유유연제</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>세척</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>빨레비누</td><td>—</td><td>출산전</td><td>세척</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>뚜껑용 세탁망</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>위생</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>별대 건조대</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>위생</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>영아 지퍼백</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>위생</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>손수건</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>위생</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>건티슈</td><td>—</td><td>출산전</td><td>위생</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>물티슈</td><td>—</td><td>출산후</td><td>위생</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>소독티슈</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>위생</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>신생아 면봉</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>위생</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>손톱깎이</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>위생</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>귓속 흡입기</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>위생</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>아기 수건</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>위생</td><td><select class="method-select"><option>새제품</option><option>—</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>기저귀</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>기저귀</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>기저귀 쓰레기통</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>기저귀</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>발진연고</td><td>—</td><td>출산전</td><td>목욕</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>로션, 크림</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>목욕</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>샴푸, 바디워시</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>목욕</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>수욕대</td><td>—</td><td>출산전</td><td>목욕</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>욕조</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>목욕</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>12M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>타올</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>목욕</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>당온계</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>목욕</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 수유/분유 -->
+        <div class="week-content" data-week-content="bf-milk">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th style="width:48px">완료</th><th>품목</th><th>필수여부</th><th>구매시기</th><th>구매방법</th><th>사용기간</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>아기 비타민D</td><td>—</td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>아기 유산균</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>수유패드</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>젖병</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>12M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>노리개 젖꼭지</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>12M권장</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>분유포트</td><td>—</td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>—</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>12M~</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>분유</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>12M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>분유세이커</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td><select class="method-select"><option>선물</option><option>새제품</option><option>렌트</option><option>중고/당근</option></select></td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 세척 -->
+        <div class="week-content" data-week-content="bf-wash">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th style="width:48px">완료</th><th>품목</th><th>필수여부</th><th>구매시기</th><th>구매방법</th><th>사용기간</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>젖병세제</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>젖병 건조대</td><td>—</td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>젖병 집게</td><td>—</td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>스펀지 세척솔</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>젖병세척기</td><td>—</td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>—</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>12M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>젖병소독기</td><td>—</td><td>출산전</td><td><select class="method-select"><option>중고/당근</option><option>새제품</option><option>렌트</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>세탁세제/섬유유연제</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>빨레비누</td><td>—</td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 위생 -->
+        <div class="week-content" data-week-content="bf-hygiene">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th style="width:48px">완료</th><th>품목</th><th>필수여부</th><th>구매시기</th><th>구매방법</th><th>사용기간</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>뚜껑용 세탁망</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>별대 건조대</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>영아 지퍼백</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>손수건</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>건티슈</td><td>—</td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>물티슈</td><td>—</td><td>출산후</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>소독티슈</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>신생아 면봉</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>손톱깎이</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>귓속 흡입기</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>아기 수건</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td><select class="method-select"><option>새제품</option><option>—</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 기저귀 -->
+        <div class="week-content" data-week-content="bf-diaper">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th style="width:48px">완료</th><th>품목</th><th>필수여부</th><th>구매시기</th><th>구매방법</th><th>사용기간</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>기저귀</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>기저귀 쓰레기통</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 목욕 -->
+        <div class="week-content" data-week-content="bf-bath">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th style="width:48px">완료</th><th>품목</th><th>필수여부</th><th>구매시기</th><th>구매방법</th><th>사용기간</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>발진연고</td><td>—</td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>로션, 크림</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>샴푸, 바디워시</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>수욕대</td><td>—</td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>욕조</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>12M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>타올</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>당온계</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td><select class="method-select"><option>—</option><option>새제품</option><option>렌트</option><option>중고/당근</option><option>선물</option></select></td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </div>
-    </section>
+
+        </div><!-- /bp-food -->
+        <div class="week-content" data-week-content="bp-clothes">
+
+      <div class="week-tab-container">
+        <div class="week-tabs">
+          <button class="week-tab active" data-week="bc-all">전체</button>
+          <button class="week-tab" data-week="bc-bedding">🛏️ 침구</button>
+          <button class="week-tab" data-week="bc-clothes">👕 의류</button>
+          <button class="week-tab" data-week="bc-toy">🧸 장난감</button>
+        </div>
+
+        <!-- 전체 -->
+        <div class="week-content active" data-week-content="bc-all">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th style="width:48px">완료</th><th>품목</th><th>필수여부</th><th>구매시기</th><th>카테고리</th><th>사용기간</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>겉싸개</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>침구</td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>속싸개</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>침구</td><td>3M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>스와틀</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>침구</td><td>3M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>두상베개</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>침구</td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>역류방지쿠션</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>침구</td><td>3M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>옆잠베개</td><td><span class="tag tag-pink">강추</span></td><td>출산후</td><td>침구</td><td>1~3M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>방수패드</td><td><span class="tag tag-blue">필수</span></td><td>출산후</td><td>침구</td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>손싸개</td><td>—</td><td>출산전</td><td>의류</td><td>2M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>양말</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>의류</td><td>6M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>신생아 모자</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>의류</td><td>6M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>베넷저고리</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>의류</td><td>2M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>베넷수트</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>의류</td><td>3M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>바디수트</td><td><span class="tag tag-gray">선택</span></td><td>출산후</td><td>의류</td><td>3~12M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>턱받이</td><td><span class="tag tag-gray">선택</span></td><td>출산후</td><td>의류</td><td>3~12M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>초점책</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>장난감</td><td>1M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>딸랑이</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>장난감</td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>모빌</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>장난감</td><td>3M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>바운서</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>장난감</td><td>2~6M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>애착인형</td><td><span class="tag tag-gray">선택</span></td><td>출산후</td><td>장난감</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 침구 -->
+        <div class="week-content" data-week-content="bc-bedding">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th style="width:48px">완료</th><th>품목</th><th>필수여부</th><th>구매시기</th><th>사용기간</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>겉싸개</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>속싸개</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>3M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>스와틀</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>3M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>두상베개</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>역류방지쿠션</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>3M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>옆잠베개</td><td><span class="tag tag-pink">강추</span></td><td>출산후</td><td>1~3M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>방수패드</td><td><span class="tag tag-blue">필수</span></td><td>출산후</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 의류 -->
+        <div class="week-content" data-week-content="bc-clothes">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th style="width:48px">완료</th><th>품목</th><th>필수여부</th><th>구매시기</th><th>사용기간</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>손싸개</td><td>—</td><td>출산전</td><td>2M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>양말</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>6M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>신생아 모자</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>6M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>베넷저고리</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>2M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>베넷수트</td><td><span class="tag tag-blue">필수</span></td><td>출산전</td><td>3M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>바디수트</td><td><span class="tag tag-gray">선택</span></td><td>출산후</td><td>3~12M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>턱받이</td><td><span class="tag tag-gray">선택</span></td><td>출산후</td><td>3~12M</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 장난감 -->
+        <div class="week-content" data-week-content="bc-toy">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th style="width:48px">완료</th><th>품목</th><th>필수여부</th><th>구매시기</th><th>사용기간</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>초점책</td><td><span class="tag tag-gray">선택</span></td><td>출산전</td><td>1M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>딸랑이</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>—</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>모빌</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>3M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>바운서</td><td><span class="tag tag-pink">강추</span></td><td>출산전</td><td>2~6M</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>애착인형</td><td><span class="tag tag-gray">선택</span></td><td>출산후</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+        </div><!-- /bp-clothes -->
+      </div><!-- /week-tab-container outer -->
+    </section><!-- /baby-products -->
 
     <!-- ── 면세점 쇼핑리스트 ──────────────────────── -->
     <section id="dutyfree" class="section">
-      <h2 class="section-title"><span class="emoji">🛒</span> 면세점 쇼핑리스트</h2>
+      <h2 class="section-title"><span class="emoji">🛒</span> 면세점 쇼핑 목록 추천</h2>
 
-      <div class="data-table-wrap">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>상품명</th>
-              <th>면세점 가격</th>
-              <th>온라인 최저가</th>
-              <th>베네피아 가격</th>
-              <th>할인율</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>마더케이 무형광세탁망 3종</td>
-              <td>10,444</td>
-              <td>15,300</td>
-              <td>—</td>
-              <td><span class="discount-badge">32%</span></td>
-            </tr>
-            <tr>
-              <td>마더케이 네일케어 4종세트</td>
-              <td>9,634</td>
-              <td>10,468</td>
-              <td>11,700</td>
-              <td><span class="discount-badge">8%</span></td>
-            </tr>
-            <tr>
-              <td>마더케이 신생아면봉 300p</td>
-              <td>4,019</td>
-              <td>4,366</td>
-              <td>6,120</td>
-              <td><span class="discount-badge">8%</span></td>
-            </tr>
-            <tr>
-              <td>마더케이 순면 건티슈 160매</td>
-              <td>10,401</td>
-              <td>16,500</td>
-              <td>—</td>
-              <td><span class="discount-badge">37%</span></td>
-            </tr>
-            <tr>
-              <td>스와비넥스 쪽쪽이 모유촉감</td>
-              <td>9,896</td>
-              <td>17,100</td>
-              <td>—</td>
-              <td><span class="discount-badge">42%</span></td>
-            </tr>
-            <tr>
-              <td>스와비넥스 쪽쪽이</td>
-              <td>6,853</td>
-              <td>14,050</td>
-              <td>—</td>
-              <td><span class="discount-badge">51%</span></td>
-            </tr>
-            <tr>
-              <td>스와비넥스 쪽쪽이 클립 2개</td>
-              <td>21,320</td>
-              <td>39,600</td>
-              <td>—</td>
-              <td><span class="discount-badge">46%</span></td>
-            </tr>
-            <tr>
-              <td>쁘리마쥬 기저귀크림 듀오</td>
-              <td>23,485</td>
-              <td>28,945</td>
-              <td>25,200</td>
-              <td><span class="discount-badge">19%</span></td>
-            </tr>
-            <tr>
-              <td>쁘리마쥬 세럼 듀오</td>
-              <td>27,297</td>
-              <td>37,926</td>
-              <td>34,200</td>
-              <td><span class="discount-badge">28%</span></td>
-            </tr>
-            <tr>
-              <td>쁘리마쥬 대용량 듀오</td>
-              <td>106,287</td>
-              <td>130,170</td>
-              <td>—</td>
-              <td><span class="discount-badge">18%</span></td>
-            </tr>
-            <tr>
-              <td>밤부베베 라지방수요</td>
-              <td>37,793</td>
-              <td>60,700</td>
-              <td>—</td>
-              <td><span class="discount-badge">38%</span></td>
-            </tr>
-            <tr>
-              <td>밤부베베 사각기저귀 3장</td>
-              <td>19,299</td>
-              <td>22,168</td>
-              <td>30,600</td>
-              <td><span class="discount-badge">13%</span></td>
-            </tr>
-            <tr>
-              <td>밤부베베 손수건 15장</td>
-              <td>24,765</td>
-              <td>27,207</td>
-              <td>—</td>
-              <td><span class="discount-badge">9%</span></td>
-            </tr>
-            <tr>
-              <td>밤부베베 시그니처 거즈 얌쑥 6장</td>
-              <td>11,924</td>
-              <td>18,430</td>
-              <td>—</td>
-              <td><span class="discount-badge">35%</span></td>
-            </tr>
-            <tr>
-              <td>밤부베베 엠보 얌얌쑥쑥 6장</td>
-              <td>15,593</td>
-              <td>20,700</td>
-              <td>—</td>
-              <td><span class="discount-badge">25%</span></td>
-            </tr>
-            <tr>
-              <td>밤부베베 시그니처 거즈 배얌이 6장</td>
-              <td>11,924</td>
-              <td>18,740</td>
-              <td>—</td>
-              <td><span class="discount-badge">36%</span></td>
-            </tr>
-            <tr>
-              <td>밤부베베 엠보퓨어 5장</td>
-              <td>11,006</td>
-              <td>15,740</td>
-              <td>—</td>
-              <td><span class="discount-badge">30%</span></td>
-            </tr>
-            <tr>
-              <td>밤부베베 시그니처 엠보 꽃망울 5장</td>
-              <td>10,453</td>
-              <td>17,860</td>
-              <td>—</td>
-              <td><span class="discount-badge">41%</span></td>
-            </tr>
-            <tr>
-              <td>밤부베베 거즈 방수패드 2개</td>
-              <td>82,110</td>
-              <td>99,840</td>
-              <td>—</td>
-              <td><span class="discount-badge">18%</span></td>
-            </tr>
-            <tr>
-              <td>밤부베베 토닥트림패드</td>
-              <td>16,020</td>
-              <td>22,400</td>
-              <td>—</td>
-              <td><span class="discount-badge">28%</span></td>
-            </tr>
-            <tr>
-              <td>베베룬 거즈블랭킷</td>
-              <td>23,380</td>
-              <td>37,490</td>
-              <td>—</td>
-              <td><span class="discount-badge">38%</span></td>
-            </tr>
-            <tr>
-              <td>베베룬 거즈 10장</td>
-              <td>12,353</td>
-              <td>16,090</td>
-              <td>—</td>
-              <td><span class="discount-badge">23%</span></td>
-            </tr>
-            <tr>
-              <td>벨몽 방수요</td>
-              <td>20,296</td>
-              <td>28,500</td>
-              <td>—</td>
-              <td><span class="discount-badge">29%</span></td>
-            </tr>
-          </tbody>
-        </table>
+      <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:24px;">면세점에서 구매하면 저렴한 신생아·육아 용품 추천 목록이에요.</p>
+
+      <div class="checklist-group">
+        <div class="checklist-group-title">🧴 마더케이</div>
+        <ul class="checklist">
+          <li><div class="check-icon"></div><span class="check-text">마더케이 무형광세탁망 3종</span></li>
+          <li><div class="check-icon"></div><span class="check-text">마더케이 네일케어 4종세트</span></li>
+          <li><div class="check-icon"></div><span class="check-text">마더케이 신생아면봉 300p</span></li>
+          <li><div class="check-icon"></div><span class="check-text">마더케이 순면 건티슈 160매</span></li>
+        </ul>
+      </div>
+
+      <div class="checklist-group">
+        <div class="checklist-group-title">🍬 스와비넥스</div>
+        <ul class="checklist">
+          <li><div class="check-icon"></div><span class="check-text">스와비넥스 쪽쪽이 모유촉감</span></li>
+          <li><div class="check-icon"></div><span class="check-text">스와비넥스 쪽쪽이</span></li>
+          <li><div class="check-icon"></div><span class="check-text">스와비넥스 쪽쪽이 클립 2개</span></li>
+        </ul>
+      </div>
+
+      <div class="checklist-group">
+        <div class="checklist-group-title">🌿 쁘리마쥬</div>
+        <ul class="checklist">
+          <li><div class="check-icon"></div><span class="check-text">쁘리마쥬 기저귀크림 듀오</span></li>
+          <li><div class="check-icon"></div><span class="check-text">쁘리마쥬 세럼 듀오</span></li>
+          <li><div class="check-icon"></div><span class="check-text">쁘리마쥬 대용량 듀오</span></li>
+        </ul>
+      </div>
+
+      <div class="checklist-group">
+        <div class="checklist-group-title">🎋 밤부베베</div>
+        <ul class="checklist">
+          <li><div class="check-icon"></div><span class="check-text">밤부베베 라지방수요</span></li>
+          <li><div class="check-icon"></div><span class="check-text">밤부베베 사각기저귀 3장</span></li>
+          <li><div class="check-icon"></div><span class="check-text">밤부베베 손수건 15장</span></li>
+          <li><div class="check-icon"></div><span class="check-text">밤부베베 시그니처 거즈 얌쑥 6장</span></li>
+          <li><div class="check-icon"></div><span class="check-text">밤부베베 엠보 얌얌쑥쑥 6장</span></li>
+          <li><div class="check-icon"></div><span class="check-text">밤부베베 시그니처 거즈 배얌이 6장</span></li>
+          <li><div class="check-icon"></div><span class="check-text">밤부베베 엠보퓨어 5장</span></li>
+          <li><div class="check-icon"></div><span class="check-text">밤부베베 시그니처 엠보 꽃망울 5장</span></li>
+          <li><div class="check-icon"></div><span class="check-text">밤부베베 거즈 방수패드 2개</span></li>
+          <li><div class="check-icon"></div><span class="check-text">밤부베베 토닥트림패드</span></li>
+        </ul>
+      </div>
+
+      <div class="checklist-group">
+        <div class="checklist-group-title">🌙 베베룬 · 벨몽</div>
+        <ul class="checklist">
+          <li><div class="check-icon"></div><span class="check-text">베베룬 거즈블랭킷</span></li>
+          <li><div class="check-icon"></div><span class="check-text">베베룬 거즈 10장</span></li>
+          <li><div class="check-icon"></div><span class="check-text">벨몽 방수요</span></li>
+        </ul>
       </div>
     </section>
 
@@ -620,95 +738,280 @@
     <section id="confinement" class="section">
       <h2 class="section-title"><span class="emoji">🛌</span> 조리원 계약 관련</h2>
 
-      <table class="info-table">
-        <tbody>
-          <tr>
-            <th>조리원명</th>
-            <td>태릉뉴이자르</td>
-          </tr>
-          <tr>
-            <th>2주 이용 비용</th>
-            <td>노블: 380만원</td>
-          </tr>
-          <tr>
-            <th>계약금</th>
-            <td>30만원</td>
-          </tr>
-          <tr>
-            <th>남은 금액</th>
-            <td>350만원</td>
-          </tr>
-          <tr>
-            <th>위치 및 접근성</th>
-            <td>2.5km</td>
-          </tr>
-          <tr>
-            <th>기본 마사지</th>
-            <td>산전 2회, 산후 2회</td>
-          </tr>
-          <tr>
-            <th>신생아캠 운영</th>
-            <td>베베캠 운영</td>
-          </tr>
-          <tr>
-            <th>남편 식사</th>
-            <td>당일 외 알아서 (배달·포장)</td>
-          </tr>
-          <tr>
-            <th>외부 음식 반입</th>
-            <td>가능</td>
-          </tr>
-          <tr>
-            <th>할인 및 이벤트</th>
-            <td>만삭사진·신생아 사진 무료</td>
-          </tr>
-          <tr>
-            <th>환불 정책</th>
-            <td>31일 전까지</td>
-          </tr>
-          <tr>
-            <th>동반자 입실</th>
-            <td>남편 출퇴근 가능</td>
-          </tr>
-          <tr>
-            <th>마사지 비용</th>
-            <td>—</td>
-          </tr>
-          <tr>
-            <th>개인실 크기 및 구성</th>
-            <td>—</td>
-          </tr>
-          <tr>
-            <th>신생아실 전문 인력</th>
-            <td>—</td>
-          </tr>
-          <tr>
-            <th>신생아 1인당 간호사 수</th>
-            <td>—</td>
-          </tr>
-          <tr>
-            <th>한방/좌욕 치료</th>
-            <td>—</td>
-          </tr>
-          <tr>
-            <th>산모 준비물 제공</th>
-            <td>—</td>
-          </tr>
-          <tr>
-            <th>신생아 용품 제공</th>
-            <td>—</td>
-          </tr>
-        </tbody>
-      </table>
+      <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:20px;">조리원 방문 또는 계약 전 확인할 항목이에요. 체크하면서 비교해 보세요!</p>
+
+      <div class="checklist-group">
+        <div class="checklist-group-title">💰 비용</div>
+        <ul class="checklist">
+          <li><div class="check-icon"></div><span class="check-text">2주 이용 비용 확인</span></li>
+          <li><div class="check-icon"></div><span class="check-text">계약금 및 잔금 납부 일정 확인</span></li>
+          <li><div class="check-icon"></div><span class="check-text">마사지 추가 비용 확인</span></li>
+          <li><div class="check-icon"></div><span class="check-text">환불 정책 및 위약금 조건 확인</span></li>
+          <li><div class="check-icon"></div><span class="check-text">할인·이벤트 혜택 확인</span></li>
+        </ul>
+      </div>
+
+      <div class="checklist-group">
+        <div class="checklist-group-title">📍 위치 & 시설</div>
+        <ul class="checklist">
+          <li><div class="check-icon"></div><span class="check-text">집과의 위치·거리 확인</span></li>
+          <li><div class="check-icon"></div><span class="check-text">개인실 크기 및 구성 확인</span></li>
+          <li><div class="check-icon"></div><span class="check-text">한방·좌욕 치료 제공 여부 확인</span></li>
+        </ul>
+      </div>
+
+      <div class="checklist-group">
+        <div class="checklist-group-title">👶 신생아 케어</div>
+        <ul class="checklist">
+          <li><div class="check-icon"></div><span class="check-text">신생아실 전문 인력 상주 여부 확인</span></li>
+          <li><div class="check-icon"></div><span class="check-text">신생아 1인당 간호사 수 확인</span></li>
+          <li><div class="check-icon"></div><span class="check-text">신생아캠(베베캠) 운영 여부 확인</span></li>
+          <li><div class="check-icon"></div><span class="check-text">신생아 용품 제공 여부 확인</span></li>
+        </ul>
+      </div>
+
+      <div class="checklist-group">
+        <div class="checklist-group-title">🌸 산모 케어</div>
+        <ul class="checklist">
+          <li><div class="check-icon"></div><span class="check-text">기본 마사지 횟수 확인 (산전·산후)</span></li>
+          <li><div class="check-icon"></div><span class="check-text">산모 준비물 제공 여부 확인</span></li>
+        </ul>
+      </div>
+
+      <div class="checklist-group">
+        <div class="checklist-group-title">👨‍👩‍👧 가족 관련</div>
+        <ul class="checklist">
+          <li><div class="check-icon"></div><span class="check-text">남편 식사 제공 여부 확인</span></li>
+          <li><div class="check-icon"></div><span class="check-text">외부 음식 반입 가능 여부 확인</span></li>
+          <li><div class="check-icon"></div><span class="check-text">동반자(남편) 입실·출퇴근 가능 여부 확인</span></li>
+        </ul>
+      </div>
     </section>
 
     <!-- ── 출산 가방 리스트 ────────────────────────── -->
     <section id="bag" class="section">
-      <h2 class="section-title"><span class="emoji">👜</span> 출산 가방 리스트</h2>
-      <div class="empty-section">
-        <div class="empty-emoji">👜</div>
-        <p>출산 가방 준비물 목록을 이곳에 추가해 주세요.<br>
-           노션 페이지에 내용을 작성하면 업데이트해 드릴게요!</p>
+      <div class="section-title-row">
+        <h2 class="section-title"><span class="emoji">👜</span> 출산 가방 리스트</h2>
+        <button class="excel-btn" onclick="downloadBagExcel()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          엑셀 다운로드
+        </button>
+      </div>
+
+      <div class="week-tab-container">
+        <div class="week-tabs">
+          <button class="week-tab active" data-week="bag-all">전체</button>
+          <button class="week-tab" data-week="bag-hosp">🏥 병원용</button>
+          <button class="week-tab" data-week="bag-disp">📦 일회용품</button>
+          <button class="week-tab" data-week="bag-feed">🍼 수유용품</button>
+          <button class="week-tab" data-week="bag-health">💊 건강용품</button>
+          <button class="week-tab" data-week="bag-hygiene">🧴 위생용품</button>
+          <button class="week-tab" data-week="bag-clothes">👗 의류</button>
+          <button class="week-tab" data-week="bag-etc">📌 기타</button>
+          <button class="week-tab" data-week="bag-baby">👶 아기용품</button>
+        </div>
+
+        <!-- 전체 -->
+        <div class="week-content active" data-week-content="bag-all">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th style="width:48px">완료</th><th>항목</th><th>필수</th><th>구분</th><th>수량</th><th>설명</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>신분증</td><td><span class="tag tag-blue">필수</span></td><td>병원용</td><td>—</td><td class="tip-cell">본인확인용</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>국민행복카드</td><td><span class="tag tag-blue">필수</span></td><td>병원용</td><td>—</td><td class="tip-cell">잔여바우처 사용. 첫만남 이용권으로 병원비 사용 시 결제 당일에 바우처가 들어와 있어야 함.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>마스크</td><td><span class="tag tag-blue">필수</span></td><td>일회용품</td><td>10개</td><td class="tip-cell">병원, 조리원에서 마스크 착용해야 함.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>산모패드</td><td><span class="tag tag-blue">필수</span></td><td>일회용품</td><td>3팩</td><td class="tip-cell">출산 후 나오는 오로가 많기 때문에 처음엔 팬티형이 좋음. (국민템: 맘스안심팬티)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>생리대</td><td><span class="tag tag-blue">필수</span></td><td>일회용품</td><td>1팩</td><td class="tip-cell">오로가 줄어들면 생리대로 자주자주 갈아주는 게 좋음.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>침대패드</td><td>—</td><td>일회용품</td><td>1팩</td><td class="tip-cell">병원대 오염 방지용. 병원에서 제공하는 경우 챙길 필요 X.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>아기물티슈</td><td>—</td><td>일회용품</td><td>—</td><td class="tip-cell">아기한테 쓸 일은 잘 없지만 방에서 사용할 겸 하나 필요.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>비데티슈</td><td><span class="tag tag-blue">필수</span></td><td>일회용품</td><td>2팩</td><td class="tip-cell">오로 나올때 휴지로만 닦으면 찝찝함. 회음부 절개 시 휴지 사용도 힘들어서 필요함.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>핸드타올</td><td>—</td><td>일회용품</td><td>1팩</td><td class="tip-cell">손씻고 나서 닦는 핸드타올을 없는 곳이 많음. 없으면 키친타올 하나 챙기기.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>각티슈</td><td>—</td><td>일회용품</td><td>1개</td><td class="tip-cell">두루마리는 있어도 각티슈 없는 경우가 많음.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>수유패드</td><td>—</td><td>수유용품</td><td>1팩</td><td class="tip-cell">속옷에 부착해 모유가 흐르는 걸 방지. 모유가 많지 않을 수도 있으니 한팩만 일단 챙기기.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>모유저장백</td><td>—</td><td>수유용품</td><td>5개</td><td class="tip-cell">모유가 많이 돌 경우 열려놓고 퇴실 시 가져가면 됨. (남으면 이유식 육수팩으로 이용 가능)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>유축기 깔대기</td><td>—</td><td>수유용품</td><td>1개</td><td class="tip-cell">유축기는 병원이나 조리원에 있음. (병원·조리원에서 그냥 주거나 판매하기도 함)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>젖병세제, 젖병솔</td><td>—</td><td>수유용품</td><td>1개</td><td class="tip-cell">병원에서 유축 깔대기 세척 안해주는 경우만 챙기기. 텀블러 세척용으로 써도 됨.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>양배추 가슴팩</td><td>—</td><td>수유용품</td><td>1팩</td><td class="tip-cell">젖이 많이 돌거나 젖몸살 올 것 같을 때 사면 됨.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>유두보호크림</td><td>—</td><td>수유용품</td><td>1개</td><td class="tip-cell">모유수유 해보고 필요하면 나중에 구매. (국민템: 란시노 라놀린 크림)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>흉터치료제</td><td>—</td><td>건강용품</td><td>1개</td><td class="tip-cell">제왕절개 시 필요. 스테리스트랩, 시카밴드, 시카멘드 등 실밥 푼 후 사용 가능.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>영양제</td><td><span class="tag tag-blue">필수</span></td><td>건강용품</td><td>2주분</td><td class="tip-cell">엽산, 비타민D, 철분제, 유산균, 칼슘. (조리원에 있을 때까지 양 챙기기)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>산후복대</td><td>—</td><td>건강용품</td><td>1개</td><td class="tip-cell">제왕절개 초반에 필요하나 굳이 없어도 됨. (병원에서 제공하거나 판매함)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>압박스타킹</td><td><span class="tag tag-blue">필수</span></td><td>건강용품</td><td>1개</td><td class="tip-cell">제왕절개 시 붓기가 심해서 착용해야 함.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>손목 보호대</td><td><span class="tag tag-blue">필수</span></td><td>건강용품</td><td>1개</td><td class="tip-cell">출산 후 늘어난 관절 잡아주는 용도.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>세면도구</td><td><span class="tag tag-blue">필수</span></td><td>위생용품</td><td>2주분</td><td class="tip-cell">샴푸, 린스, 바디워시, 폼클렌저, 치약, 칫솔 (남편 것도 챙기기)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>기초화장품</td><td><span class="tag tag-blue">필수</span></td><td>위생용품</td><td>2주분</td><td class="tip-cell">남편 것도 챙기기.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>드라이기</td><td>—</td><td>위생용품</td><td>1개</td><td class="tip-cell">병원에는 보통 없거나 바람이 약한 경우가 많음. 빗도 챙기기.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>머리고무줄</td><td>—</td><td>위생용품</td><td>1개</td><td class="tip-cell">모유수유할 때 묶어야 함.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>개인수건</td><td><span class="tag tag-blue">필수</span></td><td>위생용품</td><td>3개</td><td class="tip-cell">남편과 같이 사용할 경우 넉넉하게 챙기기. (보통 병원엔 없음.)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>톤살크림/오일</td><td>—</td><td>위생용품</td><td>1개</td><td class="tip-cell">산후에도 발라줘야 튼살이 안생김.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>립밤</td><td><span class="tag tag-blue">필수</span></td><td>위생용품</td><td>1개</td><td class="tip-cell">겨울엔 특히나 입술이 잘 말라서 챙기면 좋음.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>핸드크림</td><td>—</td><td>위생용품</td><td>1개</td><td class="tip-cell">조리원에서 손씻을 일이 많아서 손이 많이 건조해짐.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>핸드워시</td><td>—</td><td>위생용품</td><td>1개</td><td class="tip-cell">병원, 조리원 개인방에 핸드워시가 없는 경우 많음.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>드라이샴푸</td><td>—</td><td>위생용품</td><td>1개</td><td class="tip-cell">최소 3일은 머리 못감기 때문에 못참을 것 같으면 챙기기.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>바디샤워티슈</td><td>—</td><td>위생용품</td><td>1팩</td><td class="tip-cell">제왕절개는 최소 7일 정도는 샤워가 힘듦. 찝찝하면 물티슈나 물 묻힌 수건으로 닦아도 됨.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>슬리퍼</td><td><span class="tag tag-blue">필수</span></td><td>의류</td><td>1개</td><td class="tip-cell">병원, 조리원에서 사용. 부은 발이 들어갈 수 있게 넉넉한 사이즈에 폭신한걸로 준비.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>산모내의(긴바지)</td><td>—</td><td>의류</td><td>2벌</td><td class="tip-cell">병원·조리원에서 원피스를 주는 경우 겨울산모는 필수.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>가디건</td><td>—</td><td>의류</td><td>1개</td><td class="tip-cell">실내 온도가 안맞을 수 있으니 챙기면 좋음. 여름의 경우 에어컨 때문에 오히려 더 챙겨야함.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>무압박양말</td><td><span class="tag tag-blue">필수</span></td><td>의류</td><td>3개</td><td class="tip-cell">땀 흡수 되는 무압박 발목 덮는 양말. 산후풍 방지.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>속옷</td><td><span class="tag tag-blue">필수</span></td><td>의류</td><td>3벌</td><td class="tip-cell">모유수유할 거면 수유브라나 나시가 좋음. 세탁이 안되는 병원·조리원이면 더 많이 챙기기.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>지퍼백/봉투</td><td>—</td><td>기타</td><td>2개</td><td class="tip-cell">빨래감 담거나 짐정리용.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>보호자 이불, 베개</td><td><span class="tag tag-blue">필수</span></td><td>기타</td><td>1개</td><td class="tip-cell">보통 보호자 이불·베개는 없는 곳이 많음. 담요 하나 챙기기.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>손톱깎이</td><td><span class="tag tag-blue">필수</span></td><td>기타</td><td>1개</td><td class="tip-cell">조리원까지 하면 2주 이상 있기 때문에 한번은 손톱을 잘라야함.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>빨대</td><td>—</td><td>기타</td><td>5개</td><td class="tip-cell">구부려지는 빨대, 누워있을 때 먹기 편함. (뻐로로 물로 대신해서 마셔도 됨)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>텀블러</td><td><span class="tag tag-blue">필수</span></td><td>기타</td><td>1개</td><td class="tip-cell">씻을 세제 준비하기 귀찮으면 그냥 일회용 컵으로 준비. (남편 것도 있으면 좋음)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>가위</td><td><span class="tag tag-blue">필수</span></td><td>기타</td><td>1개</td><td class="tip-cell">제왕절개 하면 힘주기도 힘들어서 맘스안심팬티 끊을때 필요.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>휴대폰충전기</td><td><span class="tag tag-blue">필수</span></td><td>기타</td><td>1개</td><td class="tip-cell">보조배터리도 있으면 좋음. (고속충전기에 선이 길면 좋음)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>멀티탭</td><td><span class="tag tag-blue">필수</span></td><td>기타</td><td>1개</td><td class="tip-cell">콘센트가 넉넉지 않아서 하나 들고가면 좋음.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>귀마개</td><td>—</td><td>기타</td><td>1개</td><td class="tip-cell">방음이 잘 안되거나 다인실 사용 시 필요할 수 있음.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>안대</td><td>—</td><td>기타</td><td>1개</td><td class="tip-cell">암막커튼이 아닌 경우나 남편과 함께 생활 시 혼자 낮잠잘때 있으면 좋음.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>베넷저고리</td><td><span class="tag tag-blue">필수</span></td><td>아기용품</td><td>1개</td><td class="tip-cell">병원, 조리원 퇴원 시 필요.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>속싸개</td><td>—</td><td>아기용품</td><td>1개</td><td class="tip-cell">전기저귀로 대체가능.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>겉싸개</td><td><span class="tag tag-blue">필수</span></td><td>아기용품</td><td>1개</td><td class="tip-cell">여름에는 속싸개로 대체하기도함. (겨울에는 꼭 준비하기)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 병원용 -->
+        <div class="week-content" data-week-content="bag-hosp">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead><tr><th style="width:48px">완료</th><th>항목</th><th>필수</th><th>수량</th><th>설명</th></tr></thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>신분증</td><td><span class="tag tag-blue">필수</span></td><td>—</td><td class="tip-cell">본인확인용</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>국민행복카드</td><td><span class="tag tag-blue">필수</span></td><td>—</td><td class="tip-cell">잔여바우처 사용. 첫만남 이용권으로 병원비 사용 시 결제 당일에 바우처가 들어와 있어야 함.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 일회용품 -->
+        <div class="week-content" data-week-content="bag-disp">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead><tr><th style="width:48px">완료</th><th>항목</th><th>필수</th><th>수량</th><th>설명</th></tr></thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>마스크</td><td><span class="tag tag-blue">필수</span></td><td>10개</td><td class="tip-cell">병원, 조리원에서 마스크 착용해야 함.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>산모패드</td><td><span class="tag tag-blue">필수</span></td><td>3팩</td><td class="tip-cell">출산 후 나오는 오로가 많기 때문에 처음엔 팬티형이 좋음. (국민템: 맘스안심팬티)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>생리대</td><td><span class="tag tag-blue">필수</span></td><td>1팩</td><td class="tip-cell">오로가 줄어들면 생리대로 자주자주 갈아주는 게 좋음.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>침대패드</td><td>—</td><td>1팩</td><td class="tip-cell">병원대 오염 방지용. 병원에서 제공하는 경우 챙길 필요 X.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>아기물티슈</td><td>—</td><td>—</td><td class="tip-cell">아기한테 쓸 일은 잘 없지만 방에서 사용할 겸 하나 필요.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>비데티슈</td><td><span class="tag tag-blue">필수</span></td><td>2팩</td><td class="tip-cell">오로 나올때 휴지로만 닦으면 찝찝함. 회음부 절개 시 휴지 사용도 힘들어서 필요함.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>핸드타올</td><td>—</td><td>1팩</td><td class="tip-cell">손씻고 나서 닦는 핸드타올을 없는 곳이 많음. 없으면 키친타올 하나 챙기기.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>각티슈</td><td>—</td><td>1개</td><td class="tip-cell">두루마리는 있어도 각티슈 없는 경우가 많음.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 수유용품 -->
+        <div class="week-content" data-week-content="bag-feed">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead><tr><th style="width:48px">완료</th><th>항목</th><th>필수</th><th>수량</th><th>설명</th></tr></thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>수유패드</td><td>—</td><td>1팩</td><td class="tip-cell">속옷에 부착해 모유가 흐르는 걸 방지. 모유가 많지 않을 수도 있으니 한팩만 일단 챙기기.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>모유저장백</td><td>—</td><td>5개</td><td class="tip-cell">모유가 많이 돌 경우 열려놓고 퇴실 시 가져가면 됨. (남으면 이유식 육수팩으로 이용 가능)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>유축기 깔대기</td><td>—</td><td>1개</td><td class="tip-cell">유축기는 병원이나 조리원에 있음. (병원·조리원에서 그냥 주거나 판매하기도 함)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>젖병세제, 젖병솔</td><td>—</td><td>1개</td><td class="tip-cell">병원에서 유축 깔대기 세척 안해주는 경우만 챙기기. 텀블러 세척용으로 써도 됨.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>양배추 가슴팩</td><td>—</td><td>1팩</td><td class="tip-cell">젖이 많이 돌거나 젖몸살 올 것 같을 때 사면 됨.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>유두보호크림</td><td>—</td><td>1개</td><td class="tip-cell">모유수유 해보고 필요하면 나중에 구매. (국민템: 란시노 라놀린 크림)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 건강용품 -->
+        <div class="week-content" data-week-content="bag-health">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead><tr><th style="width:48px">완료</th><th>항목</th><th>필수</th><th>수량</th><th>설명</th></tr></thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>흉터치료제</td><td>—</td><td>1개</td><td class="tip-cell">제왕절개 시 필요. 스테리스트랩, 시카밴드, 시카멘드 등 실밥 푼 후 사용 가능.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>영양제</td><td><span class="tag tag-blue">필수</span></td><td>2주분</td><td class="tip-cell">엽산, 비타민D, 철분제, 유산균, 칼슘. (조리원에 있을 때까지 양 챙기기)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>산후복대</td><td>—</td><td>1개</td><td class="tip-cell">제왕절개 초반에 필요하나 굳이 없어도 됨. (병원에서 제공하거나 판매함)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>압박스타킹</td><td><span class="tag tag-blue">필수</span></td><td>1개</td><td class="tip-cell">제왕절개 시 붓기가 심해서 착용해야 함.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>손목 보호대</td><td><span class="tag tag-blue">필수</span></td><td>1개</td><td class="tip-cell">출산 후 늘어난 관절 잡아주는 용도.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 위생용품 -->
+        <div class="week-content" data-week-content="bag-hygiene">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead><tr><th style="width:48px">완료</th><th>항목</th><th>필수</th><th>수량</th><th>설명</th></tr></thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>세면도구</td><td><span class="tag tag-blue">필수</span></td><td>2주분</td><td class="tip-cell">샴푸, 린스, 바디워시, 폼클렌저, 치약, 칫솔 (남편 것도 챙기기)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>기초화장품</td><td><span class="tag tag-blue">필수</span></td><td>2주분</td><td class="tip-cell">남편 것도 챙기기.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>드라이기</td><td>—</td><td>1개</td><td class="tip-cell">병원에는 보통 없거나 바람이 약한 경우가 많음. 빗도 챙기기.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>머리고무줄</td><td>—</td><td>1개</td><td class="tip-cell">모유수유할 때 묶어야 함.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>개인수건</td><td><span class="tag tag-blue">필수</span></td><td>3개</td><td class="tip-cell">남편과 같이 사용할 경우 넉넉하게 챙기기. (보통 병원엔 없음.)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>톤살크림/오일</td><td>—</td><td>1개</td><td class="tip-cell">산후에도 발라줘야 튼살이 안생김.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>립밤</td><td><span class="tag tag-blue">필수</span></td><td>1개</td><td class="tip-cell">겨울엔 특히나 입술이 잘 말라서 챙기면 좋음.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>핸드크림</td><td>—</td><td>1개</td><td class="tip-cell">조리원에서 손씻을 일이 많아서 손이 많이 건조해짐.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>핸드워시</td><td>—</td><td>1개</td><td class="tip-cell">병원, 조리원 개인방에 핸드워시가 없는 경우 많음.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>드라이샴푸</td><td>—</td><td>1개</td><td class="tip-cell">최소 3일은 머리 못감기 때문에 못참을 것 같으면 챙기기.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>바디샤워티슈</td><td>—</td><td>1팩</td><td class="tip-cell">제왕절개는 최소 7일 정도는 샤워가 힘듦. 찝찝하면 물티슈나 물 묻힌 수건으로 닦아도 됨.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 의류 -->
+        <div class="week-content" data-week-content="bag-clothes">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead><tr><th style="width:48px">완료</th><th>항목</th><th>필수</th><th>수량</th><th>설명</th></tr></thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>슬리퍼</td><td><span class="tag tag-blue">필수</span></td><td>1개</td><td class="tip-cell">병원, 조리원에서 사용. 부은 발이 들어갈 수 있게 넉넉한 사이즈에 폭신한걸로 준비.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>산모내의(긴바지)</td><td>—</td><td>2벌</td><td class="tip-cell">병원·조리원에서 원피스를 주는 경우 겨울산모는 필수.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>가디건</td><td>—</td><td>1개</td><td class="tip-cell">실내 온도가 안맞을 수 있으니 챙기면 좋음. 여름의 경우 에어컨 때문에 오히려 더 챙겨야함.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>무압박양말</td><td><span class="tag tag-blue">필수</span></td><td>3개</td><td class="tip-cell">땀 흡수 되는 무압박 발목 덮는 양말. 산후풍 방지.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>속옷</td><td><span class="tag tag-blue">필수</span></td><td>3벌</td><td class="tip-cell">모유수유할 거면 수유브라나 나시가 좋음. 세탁이 안되는 병원·조리원이면 더 많이 챙기기.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 기타 -->
+        <div class="week-content" data-week-content="bag-etc">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead><tr><th style="width:48px">완료</th><th>항목</th><th>필수</th><th>수량</th><th>설명</th></tr></thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>지퍼백/봉투</td><td>—</td><td>2개</td><td class="tip-cell">빨래감 담거나 짐정리용.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>보호자 이불, 베개</td><td><span class="tag tag-blue">필수</span></td><td>1개</td><td class="tip-cell">보통 보호자 이불·베개는 없는 곳이 많음. 담요 하나 챙기기.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>손톱깎이</td><td><span class="tag tag-blue">필수</span></td><td>1개</td><td class="tip-cell">조리원까지 하면 2주 이상 있기 때문에 한번은 손톱을 잘라야함.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>빨대</td><td>—</td><td>5개</td><td class="tip-cell">구부려지는 빨대, 누워있을 때 먹기 편함. (뻐로로 물로 대신해서 마셔도 됨)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>텀블러</td><td><span class="tag tag-blue">필수</span></td><td>1개</td><td class="tip-cell">씻을 세제 준비하기 귀찮으면 그냥 일회용 컵으로 준비. (남편 것도 있으면 좋음)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>가위</td><td><span class="tag tag-blue">필수</span></td><td>1개</td><td class="tip-cell">제왕절개 하면 힘주기도 힘들어서 맘스안심팬티 끊을때 필요.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>휴대폰충전기</td><td><span class="tag tag-blue">필수</span></td><td>1개</td><td class="tip-cell">보조배터리도 있으면 좋음. (고속충전기에 선이 길면 좋음)</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>멀티탭</td><td><span class="tag tag-blue">필수</span></td><td>1개</td><td class="tip-cell">콘센트가 넉넉지 않아서 하나 들고가면 좋음.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>귀마개</td><td>—</td><td>1개</td><td class="tip-cell">방음이 잘 안되거나 다인실 사용 시 필요할 수 있음.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>안대</td><td>—</td><td>1개</td><td class="tip-cell">암막커튼이 아닌 경우나 남편과 함께 생활 시 혼자 낮잠잘때 있으면 좋음.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 아기용품 -->
+        <div class="week-content" data-week-content="bag-baby">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead><tr><th style="width:48px">완료</th><th>항목</th><th>필수</th><th>수량</th><th>설명</th></tr></thead>
+              <tbody>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>베넷저고리</td><td><span class="tag tag-blue">필수</span></td><td>1개</td><td class="tip-cell">병원, 조리원 퇴원 시 필요.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>속싸개</td><td>—</td><td>1개</td><td class="tip-cell">전기저귀로 대체가능.</td></tr>
+                <tr><td class="td-check"><input type="checkbox" class="item-check"></td><td>겉싸개</td><td><span class="tag tag-blue">필수</span></td><td>1개</td><td class="tip-cell">여름에는 속싸개로 대체하기도함. (겨울에는 꼭 준비하기)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -716,5 +1019,6 @@
 </div>
 
 <script src="js/main.js"></script>
+<script src="js/excel.js"></script>
 </body>
 </html>
