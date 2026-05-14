@@ -708,26 +708,41 @@ body {
     transform: translateX(calc(-1 * var(--sidebar-width)));
     box-shadow: 4px 0 20px rgba(0,0,0,0.15);
   }
+  #sidebar.open { transform: translateX(0); }
+  #sidebar-overlay.show { display: block; }
+  #main { margin-left: 0 !important; }
 
-  #sidebar.open {
-    transform: translateX(0);
-  }
+  #content { padding: 16px 14px 40px; }
 
-  #sidebar-overlay.show {
-    display: block;
-  }
+  .section-title { font-size: 18px; }
 
-  #main {
-    margin-left: 0 !important;
-  }
+  .week-tabs { gap: 6px; margin-bottom: 16px; }
+  .week-tab { padding: 6px 12px; font-size: 12px; }
+  .week-tab-container > .week-tabs > .week-tab { font-size: 12.5px; padding: 7px 13px; }
+  .week-content .week-tabs .week-tab { font-size: 11.5px; padding: 5px 11px; }
 
-  #content {
-    padding: 20px 18px 40px;
-  }
+  .data-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .data-table { min-width: 520px; font-size: 12px; }
+  .data-table th { padding: 9px 10px; font-size: 11.5px; }
+  .data-table td { padding: 8px 10px; font-size: 12px; vertical-align: top; }
+  .tip-cell { font-size: 11.5px; min-width: 140px; max-width: 200px; word-break: keep-all; }
+  .tag { font-size: 10px; padding: 1px 7px; }
+  .method-select { font-size: 11px; padding: 2px 4px; min-width: 60px; }
+  .item-check { width: 16px; height: 16px; }
 
-  .section-title {
-    font-size: 20px;
-  }
+  .section-title-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .excel-btn { font-size: 12px; padding: 7px 14px; }
+
+  .welcome-banner { padding: 24px 20px; }
+  .welcome-banner h1 { font-size: 20px; }
+  .welcome-banner p { font-size: 13px; }
+  .quick-links { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .quick-link { padding: 12px; }
+  .quick-link .ql-emoji { font-size: 20px; margin-bottom: 6px; }
+  .quick-link .ql-title { font-size: 12px; }
+  .quick-link .ql-desc { font-size: 11px; }
+
+  .checklist li { padding: 12px 14px; font-size: 13px; }
 }
 
 /* ── 사이드바 푸터 인스타 링크 ── */
