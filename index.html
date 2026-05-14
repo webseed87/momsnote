@@ -62,6 +62,13 @@
       </div>
     </button>
 
+    <button class="nav-item" data-section="dad-todo">
+      <div class="nav-label">
+        <span class="nav-emoji">👨</span>
+        <span class="nav-text">출산 후 남편 할일</span>
+      </div>
+    </button>
+
   </nav>
 
   <div class="sidebar-footer">
@@ -127,6 +134,11 @@
           <span class="ql-emoji">👜</span>
           <div class="ql-title">출산 가방 리스트</div>
           <div class="ql-desc">입원·조리원 준비물 전체</div>
+        </button>
+        <button class="quick-link" data-section="dad-todo">
+          <span class="ql-emoji">👨</span>
+          <div class="ql-title">출산 후 남편 할일</div>
+          <div class="ql-desc">병원·조리원·귀가 후 행정업무</div>
         </button>
       </div>
     </section>
@@ -1020,6 +1032,274 @@
               </tbody>
             </table>
           </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── 출산 후 남편 할일 ──────────────────────────── -->
+    <section id="dad-todo" class="section">
+      <h2 class="section-title"><span class="emoji">👨</span> 출산 후 남편 할일</h2>
+      <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:24px;">출산 전후 남편이 챙겨야 할 행정업무와 준비사항 체크리스트예요.</p>
+
+      <div class="week-tab-container">
+        <div class="week-tabs">
+          <button class="week-tab active" data-week="dad-hosp">🏥 병원에서 할일</button>
+          <button class="week-tab" data-week="dad-center">🛌 조리원에서 할일</button>
+          <button class="week-tab" data-week="dad-home">🏠 집에 와서 할일</button>
+        </div>
+
+        <!-- 병원에서 할일 -->
+        <div class="week-content active" data-week-content="dad-hosp">
+          <ul class="checklist">
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>1. 병원 도착 후 입원 절차 진행</strong><br>
+                입원 절차 진행 및 면회 관련 (양가 부모님 면회 가능여부 확인), 병원 규정 체크하기
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>2. 신생아 촬영</strong><br>
+                태어나는 과정 촬영 많이 하기 (사진/영상)
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>3. 양가 부모님께 연락</strong><br>
+                양가 부모님께 산모 건강상태, 안부 전하고 사진/영상 보내드리기
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>4. 산후조리원 연락</strong><br>
+                출산일이 앞당겨지거나 늦어지는 경우가 많으니 퇴원 날짜 확정 후 조리원에 바로 공유!<br>
+                셔틀 여부, 준비물 안내 다시 확인 / 선택제왕으로 날짜 나온 경우 미리 연락
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>5. 산후도우미 연락</strong><br>
+                산후도우미 업체 연락해서 서비스 시작일 요청<br>
+                <span style="color:var(--primary-dark); font-size:13px;">→ 준비: 임신 중에 산모 신생아 관리 바우처 미리 신청해두기 ('복지로' 앱, 출산예정일 40일 전 ~ 출산 후 30일까지)</span><br>
+                <a href="https://www.bokjiro.go.kr/ssis-tbu/index.do" target="_blank" style="color:var(--primary-dark); font-size:12.5px;">🔗 복지로 바로가기</a>
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>6. 이름 작명 신청</strong><br>
+                미리 지어둔 이름 리스트 체크 후 작명소에 바로 연락하기
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>7. 병원에서 출생증명서 발급</strong><br>
+                병원 원무과나 분만실에 문의 후 출생증명서 요청 (보험사 제출 시 필요)<br>
+                생각보다 여기저기 많이 쓰이니 <strong>3~5장 여유있게</strong> 받아놓기<br>
+                <span style="color:var(--text-muted); font-size:13px;">사용처: 직장 제출, 경조사비 신청, 회사 복지, 보험, 행정서류</span>
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>8. 출생 신고 및 주민등록 발급</strong><br>
+                출생 후 <strong>1개월 이내</strong> 신고 필수 (기간 초과 시 5만원 이하 과태료)<br>
+                💡 꿀팁: 주민센터 직접 방문 시 각종 정부지원금까지 한번에 접수 가능 (행복출산 원스톱 서비스)<br>
+                <span style="color:var(--text-muted); font-size:13px;">오프라인 준비물: 부모 신분증, 출생증명서, 아기 한글&amp;한자 이름<br>
+                온라인 준비물: 부모 금융/공동인증서, 출생증명서, 개인정보 제공 동의서 (온라인은 2~10일 소요 → 오프라인 권장)</span><br>
+                <a href="https://efamily.scourt.go.kr/index.jsp" target="_blank" style="color:var(--primary-dark); font-size:12.5px;">🔗 대한민국 법원 전자가족관계등록시스템</a>
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>9. 정부 지원금 신청</strong><br>
+                출생 신고 후 주민센터에서 한번에 신청 (행복출산 원스톱 서비스)<br>
+                • <strong>첫만남이용권</strong>: 국민행복카드 바우처 (첫째 200만원, 둘째 300만원)<br>
+                • <strong>아동수당</strong>: 0~만8세 매달 10만원 (지역사랑상품권으로 최대 13만원)<br>
+                • <strong>부모급여</strong>: 0~11개월 월 100만원 / 12~23개월 월 50만원<br>
+                • <strong>지역별 추가 지원금</strong>: 산후조리경비, 출산축하금, 양육지원금, 기저귀/분유 바우처 등<br>
+                <span style="color:var(--text-muted); font-size:13px;">준비: 통장사본 / 아동수당은 보호자 계좌로 신청 후 1~2주 뒤 아기 통장 개설하여 변경</span><br>
+                <a href="https://www.gov.kr/portal/onestopSvc/main" target="_blank" style="color:var(--primary-dark); font-size:12.5px;">🔗 정부24 원스톱 서비스</a>
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>10. 전기·가스·수도 감면 신청</strong><br>
+                만 3세 미만 자녀 가정 누구나 신청 가능 (출생일 기준 3년간 할인 적용)<br>
+                할인혜택: 기본 요금의 30%, 월 최대 16,000원 절약<br>
+                <span style="color:var(--text-muted); font-size:13px;">준비: 가족관계증명서, 주민등록등본(최근 3개월), 신분증<br>
+                아파트는 관리사무소에 미리 알리기 / 전화 신청: 국번 없이 123번</span><br>
+                <a href="https://online.kepco.co.kr/" target="_blank" style="color:var(--primary-dark); font-size:12.5px;">🔗 한국전력 사이버지점</a>
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>11. BCG + B형간염 + 1차 영유아 예약</strong><br>
+                1개월 되는 날 3개 한번에 하기 (병원 한 번 방문)<br>
+                <span style="color:var(--text-muted); font-size:13px;">→ 똑닥 앱으로 병원 예약</span>
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>12. 바구니카시트 준비</strong><br>
+                설치방법과 착용법 미리 익히기 (조리원 이동 시 필요)<br>
+                <span style="color:var(--text-muted); font-size:13px;">체크: 설치 방향 / 흔들림 없는지 / 안전벨트 길이 조절 가능한지 / 겨울 아기는 겉싸개 준비</span>
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>13. 어린이집 입소 대기 신청</strong><br>
+                아기 주민번호 나오면 바로 국공립 어린이집 대기 신청 (빠를수록 유리!)<br>
+                나중에 수정 가능하니 일단 등록이 중요! 자녀 등록 후 최대 3군데 신청<br>
+                <a href="https://www.childcare.go.kr/?menuno=1" target="_blank" style="color:var(--primary-dark); font-size:12.5px;">🔗 아이사랑 홈페이지</a>
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>14. 퇴원 수속 서류 챙기기</strong><br>
+                보험금 청구 및 회사 제출을 위해 증빙 서류 미리 받아두기<br>
+                <span style="color:var(--text-muted); font-size:13px;">→ 진단서, 진료비영수증, 진료비 세부내역서, 입퇴원확인서, 수술확인서 등</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 조리원에서 할일 -->
+        <div class="week-content" data-week-content="dad-center">
+          <ul class="checklist">
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>1. 집 대청소</strong><br>
+                집안 환기, 창틀, 화장실 청소, 공기청정기 필터 청소, 에어컨 필터 청소, 집 가구 묵은 먼지 제거
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>2. 아기방 점검</strong><br>
+                선물 들어온 물품·택배 정리 / 세탁기 청소 후 아기 옷 첫 세탁<br>
+                아기 침대 방수요, 침대패드 깔아놓기
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>3. 아기용품 소독</strong><br>
+                아기 젖병, 분유포트, 분유제조기, 젖병세척기 세척 및 소독
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>4. 화장실 / 기저귀갈이대 세팅</strong><br>
+                화장실 아기 비데·수전 세팅, 아기욕조 소독<br>
+                조리원에서 아기 기저귀 사이즈 확인 후 기저귀갈이대에 정리
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>5. 홈캠 세팅</strong><br>
+                홈캠 위치 선정 후 미리 세팅
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>6. 분유포트 온도 맞춰놓기 ⭐</strong><br>
+                조리원 퇴소 전날 물 온도 <strong>40도</strong> 유지로 맞춰두기 (매우 중요!)
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>7. 유축기 대여</strong><br>
+                조리원 퇴소 후부터 사용할 수 있도록 예약 후 방문<br>
+                <span style="color:var(--text-muted); font-size:13px;">→ 산모 또는 대리인 신분증 필요</span>
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>8. 장 봐놓기</strong><br>
+                산후도우미님이 요리할 재료 미리 장봐두기
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>9. 산후조리비 세액공제</strong><br>
+                산후조리비 최대 <strong>200만원</strong>까지 세액공제 가능<br>
+                <span style="color:var(--primary-dark); font-size:13px;">⚠️ 첫만남 바우처로 결제 시 세액공제 불가 → 반드시 현금·카드·지역화폐로 결제하기</span>
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>10. 집 온습도 맞추기</strong><br>
+                아기 귀가 전 온도 <strong>22~24도</strong> / 습도 <strong>50~60%</strong> 맞춰놓기
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 집에 와서 할일 -->
+        <div class="week-content" data-week-content="dad-home">
+          <ul class="checklist">
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>1. 건강보험 피부양자 등록</strong><br>
+                출생신고 일주일 이내 확인 및 신청 (부모가 직장 가입자인 경우 자동 등록되나 확인 필요)<br>
+                부부 모두 직장가입자라면 <strong>보험료가 낮은 배우자</strong> 밑으로 등록하는 게 유리<br>
+                <span style="color:var(--text-muted); font-size:13px;">준비: 주민등록등본 또는 가족관계증명서(상세, 최근 1달 이내), 신분증<br>
+                문의: 건강보험공단 ☎ 1577-1000</span><br>
+                <a href="https://www.nhis.or.kr/nhis/index.do" target="_blank" style="color:var(--primary-dark); font-size:12.5px;">🔗 국민건강보험공단</a>
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>2. 자동차 보험 자녀 할인 특약 신청</strong><br>
+                기존 가입 자동차보험사에 자녀 할인 특약 신청 시 보험료 할인<br>
+                <span style="color:var(--text-muted); font-size:13px;">보험사마다 다를 수 있으니 직접 문의하기</span>
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>3. 태아보험 → 어린이보험 전환</strong><br>
+                임신 중 가입한 태아보험을 어린이보험으로 전환하기 (우체국 보험도 문의)<br>
+                다자녀 할인 혜택 가능 여부 확인 / 여아의 경우 환급 받기<br>
+                <span style="color:var(--text-muted); font-size:13px;">준비: 부모 신분증, 아기 주민번호가 있는 가족관계증명서 및 기본증명서, 도장<br>
+                출산 관련 보험금 청구 (진료비·입퇴원비·수술비 증빙서류와 함께 접수)</span>
+              </div>
+            </li>
+            <li>
+              <div class="check-icon"></div>
+              <div class="check-text">
+                <strong>4. 아기 명의 통장 만들기</strong><br>
+                아기 명의 통장 개설 (출생신고 후 약 1주일 후)<br>
+                부모급여·아동수당은 아기 명의 통장으로 받는 것을 추천<br>
+                <span style="color:var(--text-muted); font-size:13px;">💡 미성년자 증여 시 10년간 2천만원까지 증여세 면제 → 자산 축적에 활용 가능<br>
+                준비: 가족관계증명서, 아이 기준 기본증명서(상세/특정), 부모 신분증, 도장(일부 지점 요구)</span>
+              </div>
+            </li>
+          </ul>
         </div>
 
       </div>
