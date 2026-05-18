@@ -1,5 +1,5 @@
 /**
- * 아이디 + PIN 회원가입 / 로그인 후 체크리스트 동기화
+ * 아이디만 사용 — 회원가입(중복 불가) / 불러오기 / 체크 자동 저장
  */
 const ChecklistSync = (function () {
   const STORAGE_USER = 'momsnote_user_id';
@@ -9,11 +9,10 @@ const ChecklistSync = (function () {
   let saveTimer = null;
 
   const ERR_MSG = {
-    too_short: '아이디와 PIN은 4글자 이상이어야 해요.',
-    user_exists: '이미 사용 중인 아이디예요. 다른 아이디를 쓰거나 로그인해 주세요.',
-    not_found: '등록되지 않은 아이디예요. 회원가입을 먼저 해 주세요.',
-    wrong_pin: 'PIN이 맞지 않아요.',
-    invalid_session: '로그인이 만료됐어요. 다시 로그인해 주세요.',
+    too_short: '아이디는 4글자 이상으로 입력해 주세요.',
+    user_exists: '이미 사용 중인 아이디예요. "불러오기"를 눌러 주세요.',
+    not_found: '등록되지 않은 아이디예요. "아이디 만들기"를 먼저 해 주세요.',
+    invalid_session: '다시 불러오기를 눌러 주세요.',
   };
 
   function getClient() {
@@ -83,10 +82,6 @@ const ChecklistSync = (function () {
       return false;
     }
 
-    if (data === null || (Array.isArray(data) && data.length === 0 && !getUserId())) {
-      return true;
-    }
-
     const map = new Map();
     (data || []).forEach((row) => {
       map.set(`${row.section}::${row.item_key}`, row.is_done);
@@ -110,10 +105,10 @@ const ChecklistSync = (function () {
     if (!itemKey) return;
 
     const { data, error } = await client.rpc('upsert_checklist_by_token', {
-      p_token: token,
-      p_section: section,
-      p_item_key: itemKey,
       p_is_done: !!isDone,
+      p_item_key: itemKey,
+      p_section: section,
+      p_token: token,
     });
 
     if (error) {
@@ -152,75 +147,70 @@ const ChecklistSync = (function () {
     const label = document.getElementById('user-id-label');
     const loggedIn = !!getToken();
     if (label) {
-      label.textContent = loggedIn ? `로그인: ${getUserId()}` : '로그인이 필요해요';
+      label.textContent = loggedIn ? `${getUserId()} — 체크 자동 저장 중` : '아이디를 만들거나 불러와 주세요';
     }
     document.getElementById('auth-form')?.classList.toggle('hidden', loggedIn);
     document.getElementById('auth-logged-in')?.classList.toggle('hidden', !loggedIn);
   }
 
+  function getIdInput() {
+    return document.getElementById('user-id-input')?.value?.trim() || '';
+  }
+
   async function register() {
     const client = getClient();
-    const id = document.getElementById('user-id-input')?.value?.trim();
-    const pin = document.getElementById('user-pin-input')?.value || '';
+    const id = getIdInput();
     if (!client) return;
-    if (!id || pin.length < 4) {
+    if (id.length < 4) {
       alert(ERR_MSG.too_short);
       return;
     }
 
-    const { data, error } = await client.rpc('register_user', {
-      p_user_id: id,
-      p_pin: pin,
-    });
+    const { data, error } = await client.rpc('register_user', { p_user_id: id });
 
     if (error) {
-      alert('회원가입 실패: ' + error.message);
+      alert('아이디 만들기 실패: ' + error.message);
       return;
     }
     if (!data?.ok) {
-      alert(ERR_MSG[data.error] || '회원가입에 실패했어요.');
+      alert(ERR_MSG[data.error] || '아이디를 만들지 못했어요.');
       return;
     }
 
     setSession(data.token, data.user_id);
     bindCheckboxes();
     await loadAll();
-    alert('회원가입 완료! 체크 내용이 이 아이디에 저장돼요.');
+    alert(`"${data.user_id}" 아이디가 만들어졌어요. 체크하면 자동 저장됩니다.`);
   }
 
   async function login() {
     const client = getClient();
-    const id = document.getElementById('user-id-input')?.value?.trim();
-    const pin = document.getElementById('user-pin-input')?.value || '';
+    const id = getIdInput();
     if (!client) return;
-    if (!id || pin.length < 4) {
+    if (id.length < 4) {
       alert(ERR_MSG.too_short);
       return;
     }
 
-    const { data, error } = await client.rpc('login_user', {
-      p_user_id: id,
-      p_pin: pin,
-    });
+    const { data, error } = await client.rpc('login_user', { p_user_id: id });
 
     if (error) {
-      alert('로그인 실패: ' + error.message);
+      alert('불러오기 실패: ' + error.message);
       return;
     }
     if (!data?.ok) {
-      alert(ERR_MSG[data.error] || '로그인에 실패했어요.');
+      alert(ERR_MSG[data.error] || '불러오지 못했어요.');
       return;
     }
 
     setSession(data.token, data.user_id);
     bindCheckboxes();
     await loadAll();
-    alert('로그인했어요. 저장된 체크를 불러왔습니다.');
+    alert(`"${data.user_id}" 체크 목록을 불러왔어요.`);
   }
 
   function logout() {
     clearSession();
-    alert('로그아웃했어요.');
   }
 
   function initAuthUI() {
@@ -240,12 +230,7 @@ const ChecklistSync = (function () {
   async function init() {
     initAuthUI();
     bindCheckboxes();
-    if (getToken() && getClient()) {
-      const ok = await loadAll();
-      if (!ok && getToken()) {
-        /* 세션 만료 시 데이터 없음 — 토큰 유지하고 빈 목록으로 시작 */
-      }
-    }
+    if (getToken() && getClient()) await loadAll();
   }
 
   return { init, loadAll, logout, getUserId };
