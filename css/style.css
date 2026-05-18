@@ -265,6 +265,23 @@ body {
   background: var(--primary-light);
 }
 
+.auth-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.auth-logged-in {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hidden {
+  display: none !important;
+}
+
 #menu-toggle {
   background: none;
   border: none;

@@ -94,10 +94,16 @@
       <span id="breadcrumb-active" class="crumb-active">홈</span>
     </div>
     <div id="user-id-bar" class="user-id-bar">
-      <span id="user-id-label" class="user-id-label">아이디 미설정</span>
-      <input type="text" id="user-id-input" class="user-id-input" placeholder="아이디 (4자 이상)" maxlength="40" />
-      <button type="button" id="user-id-save" class="user-id-btn">저장</button>
-      <button type="button" id="user-id-load" class="user-id-btn user-id-btn--ghost">불러오기</button>
+      <span id="user-id-label" class="user-id-label">로그인이 필요해요</span>
+      <div id="auth-form" class="auth-form">
+        <input type="text" id="user-id-input" class="user-id-input" placeholder="아이디 (4자 이상)" maxlength="40" autocomplete="username" />
+        <input type="password" id="user-pin-input" class="user-id-input" placeholder="PIN (4자 이상)" maxlength="32" autocomplete="current-password" />
+        <button type="button" id="user-register" class="user-id-btn">회원가입</button>
+        <button type="button" id="user-login" class="user-id-btn user-id-btn--ghost">로그인</button>
+      </div>
+      <div id="auth-logged-in" class="auth-logged-in hidden">
+        <button type="button" id="user-logout" class="user-id-btn user-id-btn--ghost">로그아웃</button>
+      </div>
     </div>
   </header>
 
