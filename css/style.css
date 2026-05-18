@@ -189,17 +189,80 @@ body {
 
 /* ─── TOPBAR ──────────────────────────────────────── */
 #topbar {
-  height: var(--header-height);
+  min-height: var(--header-height);
   background: var(--white);
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
-  padding: 0 24px;
-  gap: 16px;
+  flex-wrap: wrap;
+  padding: 8px 24px;
+  gap: 10px 16px;
   position: sticky;
   top: 0;
   z-index: 50;
   box-shadow: var(--shadow);
+}
+
+.user-id-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.user-id-bar--prompt {
+  background: var(--primary-light);
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--accent);
+}
+
+.user-id-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.user-id-input {
+  font-family: inherit;
+  font-size: 12.5px;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 140px;
+  outline: none;
+}
+
+.user-id-input:focus {
+  border-color: var(--primary);
+}
+
+.user-id-btn {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.user-id-btn:hover {
+  background: var(--primary-dark);
+}
+
+.user-id-btn--ghost {
+  background: var(--white);
+  color: var(--primary-dark);
+  border: 1px solid var(--border);
+}
+
+.user-id-btn--ghost:hover {
+  background: var(--primary-light);
 }
 
 #menu-toggle {
@@ -743,6 +806,13 @@ body {
   .quick-link .ql-desc { font-size: 11px; }
 
   .checklist li { padding: 12px 14px; font-size: 13px; }
+
+  .user-id-bar {
+    margin-left: 0;
+    width: 100%;
+    order: 3;
+  }
+  .user-id-input { flex: 1; min-width: 100px; }
 }
 
 /* ── 사이드바 푸터 인스타 링크 ── */
