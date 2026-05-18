@@ -28,6 +28,7 @@ const ChecklistSync = (function () {
   }
 
   function setSession(token, uid) {
+    clearPendingSave();
     sessionToken = token;
     userId = uid;
     localStorage.setItem(STORAGE_TOKEN, token);
@@ -36,6 +37,7 @@ const ChecklistSync = (function () {
   }
 
   function clearSession() {
+    clearPendingSave();
     sessionToken = null;
     userId = null;
     localStorage.removeItem(STORAGE_TOKEN);
@@ -70,10 +72,24 @@ const ChecklistSync = (function () {
     }
   }
 
+  function resetAllChecks() {
+    document.querySelectorAll('.item-check, .check-icon').forEach((el) => {
+      applyChecked(el, false);
+    });
+  }
+
+  function clearPendingSave() {
+    clearTimeout(saveTimer);
+    saveTimer = null;
+  }
+
   async function loadAll() {
     const client = getClient();
     const token = getToken();
     if (!client || !token) return false;
+
+    clearPendingSave();
+    resetAllChecks();
 
     const { data, error } = await client.rpc('get_checklist_by_token', { p_token: token });
 
@@ -91,7 +107,7 @@ const ChecklistSync = (function () {
       const { section, itemKey } = getCheckMeta(el);
       if (!itemKey) return;
       const key = `${section}::${itemKey}`;
-      if (map.has(key)) applyChecked(el, map.get(key));
+      if (map.has(key)) applyChecked(el, !!map.get(key));
     });
     return true;
   }
@@ -211,6 +227,7 @@ const ChecklistSync = (function () {
 
   function logout() {
     clearSession();
+    resetAllChecks();
   }
 
   function initAuthUI() {
